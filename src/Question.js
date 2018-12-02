@@ -1,10 +1,32 @@
 import React from 'react';
 export default class Question extends React.Component {
+
+	constructor(props){
+		super(props);
+		this.gameEnded = this.gameEnded.bind(this);
+	}
+
+	gameEnded(finished,question){
+		if (finished){
+			return(
+			<span>
+				<h1>Enhorabuena, has acabado el cuestionario.</h1>
+			</span>
+			);
+		}else{
+			return(
+			<span>
+				<p>{question}</p>
+			</span>
+			);
+		}
+	}
+
 	render() {
 		return(
-			<span>
-			<p>{this.props.question.question}</p>
-			</span>
+			<div>
+				{this.gameEnded(this.props.isFinished, this.props.question.question)}
+			</div>
 			);
 	}
 }

@@ -1,7 +1,7 @@
 export const QUESTION_ANSWER = 'QUESTION_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const SUBMIT = 'SUBMIT';
-export const INIT_QUESTION = 'INIT_QUESTION';
+export const INIT_QUESTIONS = 'INIT_QUESTIONS';
 
 
 export function questionAnswer(index, answer) {
@@ -17,5 +17,5 @@ export function submit(questions) {
 }
 
 export function initQuestions(questions) {
-	return { type: INIT_QUESTION, payload: { questions}};
+	return { type: INIT_QUESTIONS, payload: { questions}};
 }
