@@ -10,7 +10,7 @@ export default class Answer extends React.Component {
 	emptyQuestion(question){
 		if (typeof question === "undefined"){
 			return (
-				<h1>Lo sentimos mucho, no existe una pregunta válida.</h1>
+				<h1>no existen preguntas.</h1>
 				);
 		}else{
 			return (
