@@ -27,7 +27,7 @@ export default class Answer extends React.Component {
 	if (isFinished){
 			return(
 			<span>
-				<h1>Su puntuación es de: {score} puntos.</h1>
+				<h1>Su puntuación es de: {score}/{this.props.questions.length} puntos.</h1>
 			</span>
 			);
 		}else{

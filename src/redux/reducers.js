@@ -7,7 +7,7 @@ import { INIT_QUESTIONS} from './actions';
 function score(state = 0, action = {}) {
 	switch (action.type) {
 		case SUBMIT:
-			var score=state;
+			var score=0;
 			action.payload.questions.map((question,i)=>{
 				if (typeof question.userAnswer !== "undefined"){
 					if (question.answer.trim().toLowerCase()===question.userAnswer.trim().toLowerCase()) {
@@ -15,12 +15,11 @@ function score(state = 0, action = {}) {
 					}
 				}
 			})
-			console.log(score)
 			return score;
 
 		case INIT_QUESTIONS:
-			state = 0;
-			return state;
+
+			return 0;
 
 		default:
 			return state;
@@ -31,12 +30,12 @@ function finished(state = false, action = {}) {
 	switch (action.type) {
 
 		case SUBMIT:
-			state=true;
-			return state;
+
+			return true;
 
 		case INIT_QUESTIONS:
-			state = false;
-			return state;
+
+			return false;
 
 		default:
 			return state;
@@ -47,13 +46,11 @@ function currentQuestion(state = 0, action = {}) {
 	switch (action.type) {
 
 		case CHANGE_QUESTION:
-			var index=action.payload.index;
-			state = index;
-			return state;
+			return action.payload.index;
 
 		case INIT_QUESTIONS:
-			state = 0;
-			return state;
+
+			return 0;
 
 		default:
 			return state;
@@ -71,9 +68,8 @@ function questions(state = [], action = {}) {
 			});
 
 		case INIT_QUESTIONS:
-			var questions = action.payload.questions;
-			state = questions;
-			return state;
+
+			return action.payload.questions;
 
 		default:
 			return state;

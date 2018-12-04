@@ -4,15 +4,6 @@ export default class Question extends React.Component {
 	constructor(props){
 		super(props);
 		this.gameEnded = this.gameEnded.bind(this);
-		this.emptyQuestion = this.emptyQuestion.bind(this);
-	}
-
-	emptyQuestion(question){
-		if (typeof question === "undefined"){
-			return "Lo sentimos mucho,"
-		}else{
-			return question;
-		}
 	}
 
 	gameEnded(finished,question){
@@ -23,7 +14,7 @@ export default class Question extends React.Component {
 			</span>
 			);
 		}else{
-			if (typeof question.question !== "undefined"){
+			if (typeof question !== "undefined"){
 				return(
 				<span>
 					<h1>{question.question}</h1>
@@ -32,7 +23,7 @@ export default class Question extends React.Component {
 			}else{
 				return(
 				<span>
-					<h1>{question}</h1>
+					<h1>Lo sentimos mucho,</h1>
 				</span>
 				);
 			}
@@ -42,7 +33,7 @@ export default class Question extends React.Component {
 	render() {
 		return(
 			<div>
-				{this.gameEnded(this.props.isFinished, this.emptyQuestion(this.props.question))}
+				{this.gameEnded(this.props.isFinished,this.props.question)}
 			</div>
 			);
 	}

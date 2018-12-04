@@ -1,21 +1,36 @@
 import React from 'react';
 import Button from "./Button";
-import { questions }from "./assets/mock-data";
+
 
 export default class Actionbar extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.isFinished = this.isFinished.bind(this)
+		this.isFinished = this.isFinished.bind(this);
+        this.downloadQuestions = this.downloadQuestions.bind(this);
 	}
 
-	isFinished(isFinished,onSubmit,newQuestions,onInitQuestions,oldQuestions,onChangeQuestion,iCurrentQuestion){
+    downloadQuestions() {
+        let token = "c003ee94c290a3df3dcd";
+        let url = "https://quiz2019.herokuapp.com/api/quizzes/random10wa?token="+token;
+        fetch(url)
+            .then(res => res.json())
+            .then(json => {
+                this.props.onInitQuestions(json)
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+
+    }
+
+	isFinished(isFinished,onSubmit,onInitQuestions,oldQuestions,onChangeQuestion,iCurrentQuestion){
 		if ( oldQuestions.length !== 0){
 			if (isFinished) {
 				return(
 					<span>
 						<Button buttonName="Play new game" buttonFunc={ () => {
-							return onInitQuestions(newQuestions);
+							return onInitQuestions();
 							}
 						}/>
 					</span>
@@ -52,7 +67,7 @@ export default class Actionbar extends React.Component {
 			return(
 					<span>
 						<Button buttonName="Play" buttonFunc={ () => {
-							return onInitQuestions(newQuestions);
+							return onInitQuestions();
 							}
 						}/>
 					</span>
@@ -62,7 +77,7 @@ export default class Actionbar extends React.Component {
 	render() {
 		return(
 			<div>
-				{this.isFinished(this.props.isFinished,this.props.onSubmit,questions,this.props.onInitQuestions,this.props.questions,this.props.onChangeQuestion,this.props.iCurrentQuestion)}
+				{this.isFinished(this.props.isFinished,this.props.onSubmit,this.downloadQuestions,this.props.questions,this.props.onChangeQuestion,this.props.iCurrentQuestion)}
 			</div>
 			);
 	}

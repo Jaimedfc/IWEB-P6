@@ -6,50 +6,37 @@ export default class Content extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.emptyImg = this.emptyImg.bind(this);
 		this.isFinished = this.isFinished.bind(this);
 		this.emptyQuestion = this.emptyQuestion.bind(this);
-	}
-
-	emptyImg(question){
-		if (typeof question !== "undefined"){
-			return question.attachment.url;
-		}else{
-			return;
-		}
 	}
 
 	emptyQuestion(question){
 		if (typeof question === "undefined"){
 			return(
-			<img src="sadHomer.png" width="400px" height="400px" alt="Persona triste"/>
+				<img src="sadHomer.png" width="400px" height="400px" alt="Persona triste"/>
 			);
 		}else{
-			return;
+            return(
+            	<img src={question.attachment.url} width="400px" height="400px" alt="Imagen de la pregunta"/>
+			);
 		}
 	}
 
-	
 	isFinished(isFinished, question){
-		if (typeof question !== "undefined"){
 			if (isFinished) {
 				return(
-					<img src="http://img.europapress.es/fotoweb/fotonoticia_20141218121003_800.jpg" width="400px" height="400px" alt="!Viva!"/>
+					<img src="http://img.europapress.es/fotoweb/fotonoticia_20141218121003_800.jpg" width="400px" height="400px" alt="¡Viva!"/>
 				);
 			}else{
 				return(
-					<img src={this.emptyImg(this.props.question)} width="400px" height="400px" alt="Imagen de la pregunta"/>
+					this.emptyQuestion(this.props.question)
 				);
 			}
-		}else{
-			return;
-		}
 	}
 	render() {
 		return(
 			<div>
 			<span>
-				{this.emptyQuestion(this.props.question)}
 				{this.isFinished(this.props.isFinished,this.props.question)}
 			</span>
 			<span>	
@@ -58,7 +45,8 @@ export default class Content extends React.Component {
 				<Answer question={this.props.question}
 					onQuestionAnswer={this.props.onQuestionAnswer}
 					isFinished={this.props.isFinished}
-					score={this.props.score}/>
+					score={this.props.score}
+					questions={this.props.questions}/>
 				<Tips question={this.props.question}/>
 			</span>
 			</div>

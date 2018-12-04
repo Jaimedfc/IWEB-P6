@@ -10,8 +10,21 @@ import {initQuestions} from './redux/actions';
 
 
 class App extends Component {
+
+    componentDidMount() {
+        let token = "c003ee94c290a3df3dcd";
+        let url = "https://quiz2019.herokuapp.com/api/quizzes/random10wa?token="+token;
+        fetch(url)
+            .then(res => res.json())
+            .then(json => {
+                this.props.dispatch(initQuestions(json))
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+
+    }
   render() {
-    console.log(this.props.questions)
     return (
       <div>
         <Navbar/>
@@ -39,7 +52,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-
     ...state
   };
 }
