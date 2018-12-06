@@ -8,12 +8,12 @@ export default class Navbar extends React.Component {
 	}
 
 	emptyTips(question){
-		if (typeof question !== "undefined"){
+		if (typeof question !== "undefined" && !this.props.isFinished ){
 			if (question.tips.length !== 0){
 				return (
-					<div>
+					<div key="Tips" className="Tips">
 						<h2>Tips:</h2>
-						<ul>
+						<ul key="ListaTips">
 							{this.showTips(question)}
 						</ul>
 					</div>
@@ -28,7 +28,7 @@ export default class Navbar extends React.Component {
 	showTips(question){
 		return question.tips.map((tip,id)=>{
 			return (
-				<li>
+				<li key={"li"+id}>
 					{tip}
 				</li>
 				);

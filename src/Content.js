@@ -13,11 +13,11 @@ export default class Content extends React.Component {
 	emptyQuestion(question){
 		if (typeof question === "undefined"){
 			return(
-				<img src="sadHomer.png" width="400px" height="400px" alt="Persona triste"/>
+				<img src="sadHomer.png" alt="Persona triste"/>
 			);
 		}else{
             return(
-            	<img src={question.attachment.url} width="400px" height="400px" alt="Imagen de la pregunta"/>
+            	<img src={question.attachment.url} alt="Imagen de la pregunta"/>
 			);
 		}
 	}
@@ -25,7 +25,7 @@ export default class Content extends React.Component {
 	isFinished(isFinished, question){
 			if (isFinished) {
 				return(
-					<img src="http://img.europapress.es/fotoweb/fotonoticia_20141218121003_800.jpg" width="400px" height="400px" alt="¡Viva!"/>
+					<img src="http://img.europapress.es/fotoweb/fotonoticia_20141218121003_800.jpg" alt="¡Viva!"/>
 				);
 			}else{
 				return(
@@ -35,11 +35,11 @@ export default class Content extends React.Component {
 	}
 	render() {
 		return(
-			<div>
-			<span>
+			<div key="Content" className="Content">
+			<div className="Image">
 				{this.isFinished(this.props.isFinished,this.props.question)}
-			</span>
-			<span>	
+			</div>
+			<div className="QuestionAnswerTips">
 				<Question question={this.props.question}
 					isFinished={this.props.isFinished}/>
 				<Answer question={this.props.question}
@@ -47,8 +47,11 @@ export default class Content extends React.Component {
 					isFinished={this.props.isFinished}
 					score={this.props.score}
 					questions={this.props.questions}/>
-				<Tips question={this.props.question}/>
-			</span>
+				<Tips question={this.props.question} isFinished={this.props.isFinished}/>
+			</div>
+				<div className="SaltoDeLinea">
+
+				</div>
 			</div>
 			);
 	}

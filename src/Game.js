@@ -4,7 +4,7 @@ import Content from "./Content";
 export default class Game extends React.Component {
 	render() {
 		return(
-			<div>
+			<div key="Game" className="Game">
 				<Content question={this.props.question}
 					onQuestionAnswer={this.props.onQuestionAnswer}
 					isFinished={this.props.isFinished}

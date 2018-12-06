@@ -9,32 +9,28 @@ export default class Question extends React.Component {
 	gameEnded(finished,question){
 		if (finished){
 			return(
-			<span>
+			<div className="Question">
 				<h1>Enhorabuena, has acabado el cuestionario.</h1>
-			</span>
+			</div>
 			);
 		}else{
 			if (typeof question !== "undefined"){
 				return(
-				<span>
+				<div className="Question">
 					<h1>{question.question}</h1>
-				</span>
+				</div>
 				);
 			}else{
 				return(
-				<span>
+				<div className="Question">
 					<h1>Lo sentimos mucho,</h1>
-				</span>
+				</div>
 				);
 			}
 		}
 	}
 
 	render() {
-		return(
-			<div>
-				{this.gameEnded(this.props.isFinished,this.props.question)}
-			</div>
-			);
+		return this.gameEnded(this.props.isFinished,this.props.question);
 	}
 }

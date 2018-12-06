@@ -28,31 +28,31 @@ export default class Actionbar extends React.Component {
 		if ( oldQuestions.length !== 0){
 			if (isFinished) {
 				return(
-					<span>
-						<Button buttonName="Play new game" buttonFunc={ () => {
+					<div key="NewGame" className="ActionBar">
+						<Button buttonName="Play new game"  keyB= "ButtonNewGame" buttonFunc={ () => {
 							return onInitQuestions();
 							}
 						}/>
-					</span>
+					</div>
 				);
 			}else{
 				return(
-				<span>
-					<Button buttonName="Submit" buttonFunc={ () => {
-						return onSubmit(oldQuestions);
-						}
-					}/>
 
-					<Button buttonName="Previous Question" buttonFunc={ () => {
+				<div key="Actionbar" className="ActionBar">
+					<Button buttonName="Previous Question" keyB= "ButtonPrevQuestion"  iCurrentQuestion={this.props.iCurrentQuestion} buttonFunc={ () => {
 						if (iCurrentQuestion!==0){
 							return onChangeQuestion(iCurrentQuestion-1);
 						}else{
 							return;
 						}
+					}
+					}/>
+					<Button buttonName="Submit" keyB= "ButtonSubmit" buttonFunc={ () => {
+						return onSubmit(oldQuestions);
 						}
 					}/>
 
-					<Button buttonName="Next Question" buttonFunc={ () => {
+					<Button buttonName="Next Question" iCurrentQuestion={this.props.iCurrentQuestion} keyB= "ButtonNextQuestion" buttonFunc={ () => {
 						if (iCurrentQuestion===(oldQuestions.length-1)){
 							return;
 						}else{
@@ -60,25 +60,21 @@ export default class Actionbar extends React.Component {
 						}
 						}
 					}/>
-				</span>
+				</div>
 				);
 			}
 		}else{
 			return(
-					<span>
-						<Button buttonName="Play" buttonFunc={ () => {
+					<div key="InitQuestion" className="ActionBar">
+						<Button buttonName="Play" keyB="ButtonInitQuestion"  className="ActionBar" buttonFunc={ () => {
 							return onInitQuestions();
 							}
 						}/>
-					</span>
+					</div>
 				);
 		}
 	}
 	render() {
-		return(
-			<div>
-				{this.isFinished(this.props.isFinished,this.props.onSubmit,this.downloadQuestions,this.props.questions,this.props.onChangeQuestion,this.props.iCurrentQuestion)}
-			</div>
-			);
+		return this.isFinished(this.props.isFinished,this.props.onSubmit,this.downloadQuestions,this.props.questions,this.props.onChangeQuestion,this.props.iCurrentQuestion);
 	}
 }

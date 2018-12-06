@@ -10,15 +10,16 @@ export default class Answer extends React.Component {
 	emptyQuestion(question){
 		if (typeof question === "undefined"){
 			return (
-				<h1>no existen preguntas.</h1>
+				<h1 key="NoAnswer" className="Answer">no existen preguntas.</h1>
 				);
 		}else{
 			return (
-				<span>
-				<input type='text' value={question.userAnswer || ""} onChange={(e)=>{
-			 		this.props.onQuestionAnswer(e.target.value);
-			 	}}/>
-				</span>
+				<div key="Answer" className="Answer">
+					<p>Su respuesta:</p>
+					<input type='text' value={question.userAnswer || ""} onChange={(e)=>{
+			 			this.props.onQuestionAnswer(e.target.value);
+			 		}}/>
+				</div>
 				);
 		}
 	}
@@ -26,9 +27,9 @@ export default class Answer extends React.Component {
 	gameEnded(isFinished,score,question){
 	if (isFinished){
 			return(
-			<span>
+			<div key="Puntuacion" className="Answer">
 				<h1>Su puntuación es de: {score}/{this.props.questions.length} puntos.</h1>
-			</span>
+			</div>
 			);
 		}else{
 			return this.emptyQuestion(question);
