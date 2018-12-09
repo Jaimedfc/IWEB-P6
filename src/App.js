@@ -7,11 +7,13 @@ import {questionAnswer} from './redux/actions';
 import {submit} from './redux/actions';
 import {changeQuestion} from './redux/actions';
 import {initQuestions} from './redux/actions';
+import {timer} from './redux/actions';
 
 
 class App extends Component {
 
     componentDidMount() {
+
         let token = "c003ee94c290a3df3dcd";
         let url = "https://quiz2019.herokuapp.com/api/quizzes/random10wa?token="+token;
         fetch(url)
@@ -22,8 +24,17 @@ class App extends Component {
             .catch(error =>{
                 console.log(error)
             });
+        var intervalo = setInterval(() =>{
+            this.props.dispatch(timer(this.props.timer-1));
+            if (this.props.timer===0){
+                this.props.dispatch(submit(this.props.questions))
+            }
+
+        },1000);
+
 
     }
+
   render() {
     return (
       <div>
@@ -33,6 +44,7 @@ class App extends Component {
               isFinished={this.props.finished}
               iCurrentQuestion={this.props.currentQuestion}
               questions={this.props.questions}
+              time={this.props.timer}
               onQuestionAnswer={(answer) => {
                 this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))
               }}

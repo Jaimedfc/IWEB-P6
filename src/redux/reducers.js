@@ -3,6 +3,7 @@ import { QUESTION_ANSWER} from './actions';
 import { CHANGE_QUESTION} from './actions';
 import { SUBMIT} from './actions';
 import { INIT_QUESTIONS} from './actions';
+import { TIMER} from './actions';
 
 function score(state = 0, action = {}) {
 	switch (action.type) {
@@ -76,12 +77,33 @@ function questions(state = [], action = {}) {
 	}
 }
 
+function timer(state = 300, action = {}) {
+	switch (action.type) {
+
+		case SUBMIT:
+
+			return 0;
+
+		case INIT_QUESTIONS:
+
+			return 300;
+		case TIMER:
+
+			return action.payload.time;
+
+
+		default:
+			return state;
+	}
+}
+
 
 const GlobalState = (combineReducers({
 	score,
 	finished,
 	currentQuestion,
-	questions
+	questions,
+	timer
 }));
 
 export default GlobalState;

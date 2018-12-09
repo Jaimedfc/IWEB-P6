@@ -2,6 +2,7 @@ export const QUESTION_ANSWER = 'QUESTION_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const SUBMIT = 'SUBMIT';
 export const INIT_QUESTIONS = 'INIT_QUESTIONS';
+export const TIMER = 'TIMER';
 
 
 export function questionAnswer(index, answer) {
@@ -18,4 +19,8 @@ export function submit(questions) {
 
 export function initQuestions(questions) {
 	return { type: INIT_QUESTIONS, payload: { questions}};
+}
+
+export function timer(time) {
+	return { type: TIMER, payload: {time}};
 }

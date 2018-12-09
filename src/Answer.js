@@ -16,7 +16,7 @@ export default class Answer extends React.Component {
 			return (
 				<div key="Answer" className="Answer">
 					<p>Su respuesta:</p>
-					<input type='text' value={question.userAnswer || ""} onChange={(e)=>{
+					<input type='text' placeholder="Mi respuesta" title="Mi espuesta" value={question.userAnswer || ""} onChange={(e)=>{
 			 			this.props.onQuestionAnswer(e.target.value);
 			 		}}/>
 				</div>

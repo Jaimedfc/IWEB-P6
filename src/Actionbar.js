@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from "./Button";
+import {submit} from "./redux/actions";
 
 
 export default class Actionbar extends React.Component {

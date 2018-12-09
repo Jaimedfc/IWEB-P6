@@ -8,7 +8,9 @@ export default class Content extends React.Component {
 		super(props);
 		this.isFinished = this.isFinished.bind(this);
 		this.emptyQuestion = this.emptyQuestion.bind(this);
+		this.showTimer = this.showTimer.bind(this);
 	}
+
 
 	emptyQuestion(question){
 		if (typeof question === "undefined"){
@@ -18,6 +20,22 @@ export default class Content extends React.Component {
 		}else{
             return(
             	<img src={question.attachment.url} alt="Imagen de la pregunta"/>
+			);
+		}
+	}
+
+	showTimer(isFinished){
+		if (isFinished) {
+			return (
+				<div className="Timer">
+				</div>
+			);
+		}else{
+			return(
+				<div className="Timer">
+					<h2>Tiempo restante:</h2>
+					<h2>{this.props.time} segundos.</h2>
+				</div>
 			);
 		}
 	}
@@ -33,6 +51,9 @@ export default class Content extends React.Component {
 				);
 			}
 	}
+
+
+
 	render() {
 		return(
 			<div key="Content" className="Content">
@@ -49,9 +70,7 @@ export default class Content extends React.Component {
 					questions={this.props.questions}/>
 				<Tips question={this.props.question} isFinished={this.props.isFinished}/>
 			</div>
-				<div className="SaltoDeLinea">
-
-				</div>
+				{this.showTimer(this.props.isFinished)}
 			</div>
 			);
 	}
