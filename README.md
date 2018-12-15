@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Entrega 6 de la asignatura IWEB
+Hecho por Jaime de Frutos Cerezo y Alexander de la Torre Astanin
+
+Mejoras:
+-Se ha personalizado la web usando css en la medida de lo posible, ya que, al pasar el test de accesibilidad, los colores usados tenían demasiado poco contraste.
+-Al acabar el test, hay un botón de reset con el cual se puede volver a jugar con 10 nuevas preguntas aleatorias.
+-Se ha creado un temporizador de 5 minutos, con la creación de un nuevo estado (timer) que guarda los segundos restantes hasta que llegue a 0. Al llegar a 0, se hace un submit, acabando el quiz y presentando el resultado por pantalla.
+-Se ha usado la extensión SiteImprove de chrome para hacer más accesible la página web.
+-NO se ha realizado la batería de tests opcional.
+
 ## Available Scripts
 
 In the project directory, you can run:

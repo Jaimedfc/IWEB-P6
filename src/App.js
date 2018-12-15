@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import Game from "./Game";
-import Navbar from "./Navbar";
+import Game from "./Components/Game";
+import Navbar from "./Components/Navbar";
 import {questionAnswer} from './redux/actions';
 import {submit} from './redux/actions';
 import {changeQuestion} from './redux/actions';
